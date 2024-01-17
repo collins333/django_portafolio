@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block content %}
+  <header class="row bg-black">
+    <div class="col-md-4 my-auto">
+      <img src="{% static 'portafolio/perfil.png' %}" alt="" class="img-fluid">
+    </div>
+    <div class="col-md-6">
+      <h1>Yo soy <strong>Manuel de FP</strong></h1>
+      <h3>Yo soy un desarrollador de Python</h3>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, quibusdam quaerat voluptatum nam cupiditate recusandae libero voluptas dolor ab, vitae aperiam rem possimus perspiciatis quo consequuntur tempore voluptates magnam id tenetur laboriosam molestias adipisci maxime dignissimos. Nisi magnam, culpa rem eveniet similique ab iure doloremque voluptate. Sint sapiente enim ea eligendi deleniti ipsa ad et, soluta ipsam? Illum corrupti officia, reprehenderit sit non laudantium mollitia saepe ab harum reiciendis quaerat voluptatibus iure natus similique sunt deserunt nam accusamus. Dolorem provident, consequuntur sequi, consectetur modi illo ratione non labore obcaecati excepturi quis accusantium quos nesciunt velit magnam quae, aperiam aspernatur earum.</p>
+      <a href="{% static 'portafolio/cv.pdf' %}" class="btn btn-primary btn-lg rounded-0 my-3" target="_blank">Descargar CV</a>
+    </div>
+  </header>
+  <div class="row my-4 text-center">
+    <h3>Mis Proyectos</h3>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Delectus, illum.</p>
+    {% for portafolio in portafolios %}
+      <div class="col-md-4">
+        <div class="card bg-black text-light card-proyecto">
+          <img src="{{portafolio.imagen.url}}" alt="{{portafolio.titulo}}" class="card-img-top">
+          <div class="card-body">
+            <h2>{{portafolio.titulo}}</h2>
+            <p>{{portafolio.descripcion}}</p>
+            {% if portafolio.url %}
+              <p><a href="{{portafolio.url}}" class="btn btn-light rounded-0 btn-sm" target="_blank">{{portafolio.url}}</a></p>
+            {% else %}
+              <p>Falta poner una url</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>  
+    {% endfor %}
+  </div>
+{% endblock %}
